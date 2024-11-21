@@ -29,4 +29,4 @@ Blink Led with BSRR register
     GPIOC->BSRR.REG = (1UL << (13 + 16));
     delay_ms(100);
 
-**Note:** Error when use BSRR.REG.BSR.13 = 1 and BSRR.REG.BR.13 = 1. I don't known what happened, but It's not work.I think the error occurs when writing to memory with unsigned short,and it writes with a word instead. I think this is the issue.
+**Note:** Error when use BSRR.REG.BSR.b13 = 1 and BSRR.REG.BR.b13 = 1. I don't known what happened, but It's not work.I think the error occurs when writing to memory with unsigned short,and it writes with a word instead. I think this is the issue.
