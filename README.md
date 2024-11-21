@@ -1,5 +1,11 @@
-# Series on Learning STM32F103C8T6 Bare-Metal Programming Using STM32IDE
+# Series on Learning Bare-Metal Programming
+
 
 ## Component:
 
-    01_BlinkLed
+- STM32F103C8T6 
+- STM32IDE
+- Logic analyzer
+
+## Lesson:
+- Lesson 1: Blink Led
