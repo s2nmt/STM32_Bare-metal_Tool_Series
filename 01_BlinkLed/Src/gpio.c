@@ -8,6 +8,19 @@
 #include "gpio.h"
 unsigned int reset1;
 unsigned int set1;
+
+/*
+ * There are two variables: set and reset.
+ * - `set` is used to assign the value 1 to the register.
+ * - `reset` is used to assign the value 0 to the register.
+ * For GPIO < 8 the first loops to add it. When GPIO > 8,
+ * `reset` = 0b111...111 and `set` = 0 to avoid changing CRH.
+ *
+ * After that, the mode is configured with the second loop and values are set for CRL.
+ *
+ * If GPIO >8 the fist loop is configured the mode, increments and when GPIO > 15,
+ * the second loop sets `set` = 0 and reset = 0b111...111 avoiding changes to CRL.
+ */
 void GPIO_Mode(volatile GPIO_TypeDef* GPIO, unsigned int PIN, GPIO_MODE Mode)
 {
   unsigned int reset = 0, set = 0;
