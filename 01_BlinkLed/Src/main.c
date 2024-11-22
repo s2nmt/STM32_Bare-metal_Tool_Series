@@ -24,33 +24,29 @@ void delay_ms(unsigned long ms) {
         __asm("nop");
     }
 }
+GPIO_STATE test;
 
-unsigned long test;
-unsigned long test1;
-unsigned long test2;
-unsigned long test3;
-unsigned long test4;
 int main(void)
 {
  	RCC_APB2ENR |= RCC_IOPCEN;
- 	test = GPIOC->CRL.REG;
+
 // 	GPIOC->CRH.REG |= 1UL << 20 | 1UL << 21;
 // 	GPIOC->CRH.REG &= ~(1 <<22) & ~(1 << 23);
-
-// 	test1 = GPIOC->CRH.REG;
-// 	test2 = GPIOC->CRL.REG;
-
- 	GPIO_Mode(GPIOC, 1UL << 13, GPIO_MODE_OUTPUT_PUSHPULL_50MHz);
-
- 	test3 = GPIOC->CRH.REG;
- 	test4 = GPIOC->CRL.REG;
+ 	GPIO_Mode(GPIOC, 13, GPIO_MODE_OUTPUT_OPEN_50MHz);
+ 	GPIO_Mode(GPIOC, 14, GPIO_MODE_INPUT_PULL);
     /* Loop forever */
 	while(1){
-		GPIOC->ODR.REG |= 1 << 13;
+
+		test = GPIO_Read(GPIOC,14);
+//		GPIOC->ODR.REG |= 1 << 13;
+//		GPIO_Write(GPIOC,13,GPIO_SET);
+
 //		GPIOC->ODR.BITS.b13 = !GPIOC->ODR.BITS.b13;
+		GPIO_Toggle(GPIOC, 13);
 		delay_ms(100);
-		GPIOC->ODR.REG &= ~(1 << 13);
-		delay_ms(100);
+//		GPIO_Write(GPIOC,13,GPIO_RESET);
+////
+//		delay_ms(200);
 //		GPIOC->BSRR.REG = (1UL << 13);
 //		delay_ms(100);
 //		GPIOC->BSRR.REG = (1UL << (13 + 16));

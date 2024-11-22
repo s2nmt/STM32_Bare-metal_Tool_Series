@@ -7,7 +7,7 @@
 
 #ifndef GPIO_H_
 #define GPIO_H_
-
+#include <stdint.h>
 typedef struct
 {
 
@@ -213,7 +213,10 @@ typedef struct
 
 } GPIO_TypeDef;
 
+#define GPIOA ((GPIO_TypeDef *)0x40010800)
+#define GPIOB ((GPIO_TypeDef *)0x40010C00)
 #define GPIOC ((GPIO_TypeDef *)0x40011000)
+
 #define RCC_APB2ENR     (*((volatile unsigned long *)0x40021018))
 #define RCC_IOPCEN      (1 << 4)
 
@@ -239,30 +242,17 @@ typedef enum
   GPIO_MODE_AF_OUTPUT_PUSHPULL_50MHz    = (2 << 2) | 3,
   GPIO_MODE_AF_OUTPUT_OPEN_50MHz        = (3 << 2) | 3,
 } GPIO_MODE;
-void GPIO_Mode(volatile GPIO_TypeDef* GPIO, unsigned int PIN, GPIO_MODE Mode);
-//==============================================================================================================================================================
-/*Fast init GPIO by define, Example:
-  GPIO_ModeHigh(&GPIOA, PIN_Clr(11) | PIN_Clr(12), PIN_OutAFOpen50(11) | PIN_OutAFOpen50(12));  //= GPIO_Mode(&GPIOA, BIT11 | BIT12, OUTPUT_AF_PUSHPULL_50MHZ);
-  GPIO_ModeHigh(&GPIOB, PIN_Clr(0) | PIN_Clr(1), PIN_OutPush2(0) | PIN_OutPush2(1));            //= GPIO_Mode(&GPIOB, BIT1 | BIT2, OUTPUT_PUSHPULL_50MHZ);
-*/
-#define PIN_Clr(index)                            (0xFUL << (4 * (index % 8)))
-#define PIN_OutPush10(index)                      (0x1UL << (4 * (index % 8)))
-#define PIN_OutPush2(index)                       (0x2UL << (4 * (index % 8)))
-#define PIN_OutPush50(index)                      (0x3UL << (4 * (index % 8)))
-#define PIN_OutOpen10(index)                      (0x5UL << (4 * (index % 8)))
-#define PIN_OutOpen2(index)                       (0x6UL << (4 * (index % 8)))
-#define PIN_OutOpen50(index)                      (0x7UL << (4 * (index % 8)))
-#define PIN_OutAFPush10(index)                    (0x9UL << (4 * (index % 8)))
-#define PIN_OutAFPush2(index)                     (0xAUL << (4 * (index % 8)))
-#define PIN_OutAFPush50(index)                    (0xBUL << (4 * (index % 8)))
-#define PIN_OutAFOpen10(index)                    (0xDUL << (4 * (index % 8)))
-#define PIN_OutAFOpen2(index)                     (0xEUL << (4 * (index % 8)))
-#define PIN_OutAFOpen50(index)                    (0xFUL << (4 * (index % 8)))
-#define PIN_InAnalog(index)                       (0x0UL << (4 * (index % 8)))
-#define PIN_InFloat(index)                        (0x4UL << (4 * (index % 8)))
-#define PIN_InPushDown(index)                  	  (0x8UL << (4 * (index % 8)))    //ODR.PIN = 0
-#define PIN_InPushUp(index)                       (0x8UL << (4 * (index % 8)))    //ODR.PIN = 1
-#define GPIO_ModeLow(GPIO, PIN_Clear, PIN_Mode)   (GPIO)->CRL.REG &= ~(PIN_Clear); (GPIO)->CRL.REG |= (PIN_Mode)        //for pin 0->7
-#define GPIO_ModeHigh(GPIO, PIN_Clear, PIN_Mode)  (GPIO)->CRH.REG &= ~(PIN_Clear); (GPIO)->CRH.REG |= (PIN_Mode)        //for pin 8->15      //for pin 8->15
+
+typedef enum
+{
+	GPIO_RESET = 0,
+	GPIO_SET   = 1
+} GPIO_STATE;
+
+void GPIO_Mode(volatile GPIO_TypeDef* GPIO, uint8_t GPIO_PIN, GPIO_MODE Mode);
+GPIO_STATE GPIO_Read(volatile GPIO_TypeDef* GPIO, uint8_t PIN);
+void GPIO_Write(volatile GPIO_TypeDef* GPIO, uint8_t PIN, GPIO_STATE state);
+void GPIO_Toggle(volatile GPIO_TypeDef* GPIO, uint8_t PIN);
+
 
 #endif /* GPIO_H_ */
