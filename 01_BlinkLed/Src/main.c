@@ -17,7 +17,7 @@
  */
 
 #include <main.h>
-#include <stddef.h>
+
 
 void delay_ms(unsigned long ms) {
     for (unsigned long i = 0; i < ms*1000; i++) {
@@ -25,20 +25,32 @@ void delay_ms(unsigned long ms) {
     }
 }
 
-size_t size;
-
+unsigned long test;
+unsigned long test1;
+unsigned long test2;
+unsigned long test3;
+unsigned long test4;
 int main(void)
 {
  	RCC_APB2ENR |= RCC_IOPCEN;
-	GPIOC->CRH.BITS.MODE_13 = 3;
-	GPIOC->CRH.BITS.CNF_13 = 0;
+ 	test = GPIOC->CRL.REG;
+// 	GPIOC->CRH.REG |= 1UL << 20 | 1UL << 21;
+// 	GPIOC->CRH.REG &= ~(1 <<22) & ~(1 << 23);
 
+// 	test1 = GPIOC->CRH.REG;
+// 	test2 = GPIOC->CRL.REG;
+
+ 	GPIO_Mode(GPIOC, 1UL << 13, GPIO_MODE_OUTPUT_PUSHPULL_50MHz);
+
+ 	test3 = GPIOC->CRH.REG;
+ 	test4 = GPIOC->CRL.REG;
     /* Loop forever */
 	while(1){
-//		GPIOC->ODR.REG = ~ GPIOC->ODR.REG;
-		GPIOC->ODR.BITS.b13 = !GPIOC->ODR.BITS.b13;
+		GPIOC->ODR.REG |= 1 << 13;
+//		GPIOC->ODR.BITS.b13 = !GPIOC->ODR.BITS.b13;
 		delay_ms(100);
-
+		GPIOC->ODR.REG &= ~(1 << 13);
+		delay_ms(100);
 //		GPIOC->BSRR.REG = (1UL << 13);
 //		delay_ms(100);
 //		GPIOC->BSRR.REG = (1UL << (13 + 16));
