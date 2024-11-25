@@ -1,4 +1,3 @@
-"./Src/Bitband.o"
 "./Src/gpio.o"
 "./Src/main.o"
 "./Src/syscalls.o"
