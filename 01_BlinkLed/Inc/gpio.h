@@ -217,8 +217,7 @@ typedef struct
 #define GPIOB ((GPIO_TypeDef *)0x40010C00)
 #define GPIOC ((GPIO_TypeDef *)0x40011000)
 
-#define RCC_APB2ENR     (*((volatile unsigned long *)0x40021018))
-#define RCC_IOPCEN      (1 << 4)
+
 
 
 typedef enum
