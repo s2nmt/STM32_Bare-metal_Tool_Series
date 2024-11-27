@@ -9,3 +9,5 @@
 
 ## Lesson:
 - Lesson 1: Blink Led
+- Lesson 2: Bitband
+- Lesson 3: RCC
