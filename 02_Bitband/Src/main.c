@@ -27,11 +27,15 @@ int main(void)
 {
  	RCC_APB2ENR |= RCC_IOPCEN;
  	GPIO_Mode(GPIOC, 13, GPIO_MODE_OUTPUT_OPEN_50MHz);
+
  	// bit band
 
- 	uint8_t *alias_addr_PC13 = (uint8_t *)(0x42000000 + (32 * (0x40011010 - 0x40000000)) + 13 * 4);
+ 	uint8_t *alias_addr_PC13 = (uint8_t *)BITBAND_PERIPHERAL_ADDRESS(&(GPIOC->BSRR),13);
+ 	uint8_t *alias_addr_PC13_1 = (uint8_t *)BITBAND_PERIPHERAL_ADDRESS(&(GPIOC->BSRR),13+16);
 
- 	uint8_t *alias_addr_PC13_1 = (uint8_t *)(0x42000000 + (32 * (0x40011010 - 0x40000000)) + (13+16) * 4);
+// 	uint8_t *alias_addr_PC13 = (uint8_t *)(0x42000000 + (32 * (0x40011010 - 0x40000000)) + 13 * 4);
+
+// 	uint8_t *alias_addr_PC13_1 = (uint8_t *)(0x42000000 + (32 * (0x40011010 - 0x40000000)) + (13+16) * 4);
 
 //  Use ODR register
 // 	uint8_t *alias_addr_PC13 = (uint8_t *)(0x42000000 + (32 * (0x4001100C - 0x40000000)) + 13 * 4);

@@ -213,9 +213,13 @@ typedef struct
 
 } GPIO_TypeDef;
 
-#define GPIOA ((GPIO_TypeDef *)0x40010800)
-#define GPIOB ((GPIO_TypeDef *)0x40010C00)
-#define GPIOC ((GPIO_TypeDef *)0x40011000)
+#define GPIOA_BASE_ADDR 0x40010800
+#define GPIOB_BASE_ADDR 0x40010C00
+#define GPIOC_BASE_ADDR 0x40011000
+
+#define GPIOA ((GPIO_TypeDef *)GPIOA_BASE_ADDR)
+#define GPIOB ((GPIO_TypeDef *)GPIOB_BASE_ADDR)
+#define GPIOC ((GPIO_TypeDef *)GPIOC_BASE_ADDR)
 
 
 

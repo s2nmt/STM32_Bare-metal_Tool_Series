@@ -10,6 +10,7 @@
 
 #include <gpio.h>
 #include <stdint.h>
+#include <bitband.h>
 
 #define RCC_APB2ENR     (*((volatile unsigned long *)0x40021018))
 #define RCC_IOPCEN      (1 << 4)
