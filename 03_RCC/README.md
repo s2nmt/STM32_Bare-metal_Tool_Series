@@ -2,6 +2,14 @@
 
 ![alt text](image.png)
 
+There are 3 source clock:
+- HSI (internal clock)
+- PLLCLK from PLLMUL
+- HSE (external clock)
+
+The default clock is 8MHz from internal clock (HSI), the max value is 64 MHZ because it must  pass divisor by 2 and PLLMUL max 16 => 8/2x16 = 64 MHZ.
+
+
 ## Code
 
 If we want to configure SYSCLK to be greater than 8MHZ internal we have to set the LATENCY value as shown in the image below.  
