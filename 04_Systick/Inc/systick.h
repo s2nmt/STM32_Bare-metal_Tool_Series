@@ -2,7 +2,7 @@
  * systick.h
  *
  *  Created on: Nov 27, 2024
- *      Author: bestdevever
+ *      Author: Minh Tuan
  */
 
 #ifndef SYSTICK_H_

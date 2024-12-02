@@ -44,7 +44,7 @@ int main(void)
 	GPIO_Mode(GPIOA, 8, GPIO_MODE_AF_OUTPUT_PUSHPULL_50MHz);
 
 	TIM1->TIMx_CCMR1.REG |= 6 << 4 ;
-	TIM1->TIMx_CCMR1.REG &= ~1;
+//	TIM1->TIMx_CCMR1.REG &= ~1;
 	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 10 | 1 << 11;
 
 	TIM1->TIMx_CCER.REG |= 1;
