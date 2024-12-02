@@ -257,11 +257,13 @@ int main(void)
  8000272:	f043 0360 	orr.w	r3, r3, #96	; 0x60
  8000276:	6193      	str	r3, [r2, #24]
 //	TIM1->TIMx_CCMR1.REG &= ~1;
-	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 10 | 1 << 11;
+//	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 10 | 1 << 11;
+
+	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 11;
  8000278:	4b0f      	ldr	r3, [pc, #60]	; (80002b8 <main+0x6c>)
  800027a:	6c5b      	ldr	r3, [r3, #68]	; 0x44
  800027c:	4a0e      	ldr	r2, [pc, #56]	; (80002b8 <main+0x6c>)
- 800027e:	f443 430c 	orr.w	r3, r3, #35840	; 0x8c00
+ 800027e:	f443 4308 	orr.w	r3, r3, #34816	; 0x8800
  8000282:	6453      	str	r3, [r2, #68]	; 0x44
 
 	TIM1->TIMx_CCER.REG |= 1;

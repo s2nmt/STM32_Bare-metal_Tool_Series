@@ -45,7 +45,9 @@ int main(void)
 
 	TIM1->TIMx_CCMR1.REG |= 6 << 4 ;
 //	TIM1->TIMx_CCMR1.REG &= ~1;
-	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 10 | 1 << 11;
+//	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 10 | 1 << 11;
+
+	TIM1->TIMx_BDTR.REG |= 1 << 15 | 1 << 11;
 
 	TIM1->TIMx_CCER.REG |= 1;
 	TIM1->TIMx_CCR1.REG = 1000;
