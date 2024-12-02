@@ -1,6 +1,12 @@
 # Advanced Timer
 
 ## Interrupt
+
+    void TIM1_UP_IRQHandler(){
+        TIM1->TIMx_SR.REG = 0;
+        GPIO_Toggle(GPIOC, 13);
+    }
+
     GPIO_Mode(GPIOC, 13, GPIO_MODE_OUTPUT_OPEN_50MHz);
     TIM1->TIMx_CR2.REG  = 0;
     TIM1->TIMx_SMCR.REG = 0;
@@ -24,6 +30,8 @@ TIM1->TIMx_CR1.REG |= 1 << 7 | 1 << 2 | 1;
 ![alt text](image-3.png)
 
 ![alt text](image-4.png)
+
+ *((unsigned long *) 0xE000E100)  = 1 << 25; // enable NVIC
 
 ![alt text](image-5.png)
 
