@@ -19,6 +19,8 @@ TIM1->TIMx_ARR.REG  = 7999; to set auto-reload value.
 
 ![alt text](image-2.png)
 
+TIM1->TIMx_CR1.REG |= 1 << 7 | 1 << 2 | 1;
+
 ![alt text](image-3.png)
 
 ![alt text](image-4.png)
