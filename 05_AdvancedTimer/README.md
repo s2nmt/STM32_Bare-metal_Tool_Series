@@ -14,7 +14,9 @@ TIM1->TIMx_DIER.REG = 1; to enable interrupt.
 
 ![alt text](image.png)
 ![alt text](image-1.png)
+
 TIM1->TIMx_ARR.REG  = 7999; to set auto-reload value.
+
 ![alt text](image-2.png)
 
 ![alt text](image-3.png)
