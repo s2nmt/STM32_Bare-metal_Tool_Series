@@ -1,0 +1,2 @@
+../Src/rcc.c:12:6:enable_RCC_APB2ENR	16	static
+../Src/rcc.c:16:6:enable_RCC_APB1ENR	16	static
