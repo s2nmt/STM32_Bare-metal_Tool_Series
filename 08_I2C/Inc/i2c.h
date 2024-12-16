@@ -78,39 +78,39 @@ typedef struct{
 	union {
 		unsigned long REG;
 		struct {
-			unsigned long SB			: 1;
-			unsigned long ADDR			: 1;
-			unsigned long BTF			: 1;
-			unsigned long ADD10			: 1;
-			unsigned long STOPF			: 1;
-			unsigned long reserved		: 1;
-			unsigned long RxNE			: 1;
-			unsigned long TxE     		: 1;
-			unsigned long BERR     		: 1;
-			unsigned long ARLO     		: 1;
-			unsigned long AF     		: 1;
-			unsigned long OVR     		: 1;
-			unsigned long PECERR     	: 1;
-			unsigned long reserved1		: 1;
-			unsigned long TIMEOUT     	: 1;
-			unsigned long SMBALERT     	: 1;
-			unsigned long reserved2		: 16;
+			const unsigned long SB			: 1;
+			const unsigned long ADDR		: 1;
+			const unsigned long BTF			: 1;
+			const unsigned long ADD10		: 1;
+			const unsigned long STOPF		: 1;
+			const unsigned long reserved	: 1;
+			const unsigned long RxNE		: 1;
+			const unsigned long TxE     	: 1;
+			unsigned long BERR     			: 1;
+			unsigned long ARLO     			: 1;
+			unsigned long AF     			: 1;
+			unsigned long OVR     			: 1;
+			unsigned long PECERR     		: 1;
+			unsigned long reserved1			: 1;
+			unsigned long TIMEOUT     		: 1;
+			unsigned long SMBALERT     		: 1;
+			const unsigned long reserved2	: 16;
 		}BITS;
 	}I2C_SR1;
 
 	union {
 		unsigned long REG;
 		struct {
-			unsigned long MSL			: 1;
-			unsigned long BUSY			: 1;
-			unsigned long TRA			: 1;
-			unsigned long reserved		: 1;
-			unsigned long GENCALL		: 1;
-			unsigned long SMBDEFAUL     : 1;
-			unsigned long SMBHOST     	: 1;
-			unsigned long DUALF     	: 1;
-			unsigned long PEC     		: 8;
-			unsigned long reserved2		: 16;
+			const unsigned long MSL			: 1;
+			const unsigned long BUSY		: 1;
+			const unsigned long TRA			: 1;
+			const unsigned long reserved	: 1;
+			const unsigned long GENCALL		: 1;
+			const unsigned long SMBDEFAUL   : 1;
+			const unsigned long SMBHOST     : 1;
+			const unsigned long DUALF     	: 1;
+			const unsigned long PEC     	: 8;
+			const unsigned long reserved2	: 16;
 		}BITS;
 	}I2C_SR2;
 
